@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href=''>
+</head>
+
+<body>
+    <div class="content"></div>
+    <div class="content2"></div>
+
+
+    <script>
+        window.onload = function () {
+            const currentURL = window.location.href;
+            const urlParams = new URLSearchParams(window.location.search); //?뒤의 것
+            let id = urlParams.get('id');
+            let obj = urlParams.get('obj');
+            obj = JSON.parse(obj) // .json()은 fetch API에 있는 메소드이다.
+            console.log('obj:', obj);
+
+            const contentDiv = document.querySelector('.content')
+            contentDiv.textContent = id;
+            const content2Div = document.querySelector('.content2')
+            contentDiv.textContent = obj.name
+        }
+    </script>
+
+    <script src='script.js'></script>
+</body>
+
+</html>

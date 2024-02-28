@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href=''>
+</head>
+
+<body>
+    <div id="content"></div>
+
+
+    <script>
+        // URL에서 query string을 가져오는 함수
+        const getQueryString = () => {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            return Object.fromEntries(urlParams.entries());
+        };
+        // query string을 파싱하여 데이터를 가져옵니다.
+        const data = getQueryString();
+
+        // 화면에 데이터를 표시하는 함수
+        const displayData = (data) => {
+            const contentDiv = document.getElementById('content');
+            const div = document.createElement('div');
+
+            // 데이터를 화면에 추가합니다.
+            div.innerHTML = `
+            <img src="${data.img1}" alt="Image 1">
+            <img src="${data.img2}" alt="Image 2">
+            <h1>이름: ${data.이름}</h1>
+            <h4>직업: ${data.직업}</h4>
+            <p>${data.p}</p>
+        `;
+
+            // contentDiv에 div를 추가합니다.
+            contentDiv.appendChild(div);
+        };
+
+        // 데이터를 화면에 표시합니다.
+        displayData(data);
+    </script>
+
+
+    <script src='script.js'></script>
+</body>
+
+</html>

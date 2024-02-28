@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href=''>
+</head>
+
+<body>
+    <input type='text' id='input' />
+    <button onclick="register()">아이디전달</button>
+    <input type='text' id='input2'>
+    <button onclick="register2()">객체전달</button>
+    <script>
+
+        function register() {
+            const id = document.querySelector('#input').value;
+            location.href = `/info4.html?id=${id}`;
+        }
+
+        function register2() {
+            const obj = document.querySelector('#input2').value;
+            location.href = `/info4.html?obj=${obj}`;
+        }
+    </script>
+</body>
+
+</html>

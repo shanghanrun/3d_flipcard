@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
+
+<body>
+    <h2>Login Form</h2>
+    <form id="loginForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username"><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password"><br><br>
+        <button type="submit">Login</button>
+    </form>
+    <br>
+    <div>간단한 데이터 전송</div>
+    <input type='text' id='simple' placeholder=''>
+    <button onclick="send()">전송</button>
+    <div>간단한 객체 데이터 전송</div>
+    <input type='text' id='simple2' placeholder=''>
+    <button onclick="send2()">전송</button>
+
+    <script>
+        // 이벤트 핸들러 등록
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // 폼 기본 동작 방지
+
+            // 사용자가 입력한 정보 가져오기
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            // 로컬 스토리지에 저장
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+
+            // 로그인 후 다음 동작 수행
+            // 여기에는 로그인 성공 후의 동작을 추가할 수 있습니다.
+            console.log('로그인 성공');
+            // 페이지 이동
+            window.location.href = 'info5.html';
+
+        });
+
+        const simple = document.querySelector('#simple')
+        const simple2 = document.querySelector('#simple2')
+        function send() {
+            let content = simple.value;
+            localStorage.setItem('content', content)
+            window.location.href = 'info5.html'
+        }
+        function send2() {
+            let obj = simple2.value;
+            localStorage.setItem('obj', obj)
+            window.location.href = 'info5.html'
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+</head>
+
+<body>
+    <h2>Welcome Page</h2>
+    <div id="welcomeMessage"></div>
+    <div id="simple"></div>
+    <div id="obj"></div>
+
+    <script>
+        // 페이지가 로드될 때 저장된 정보가 있는지 확인하고 필요한 경우 로그인 정보를 채움
+        window.onload = function () {
+            let username = localStorage.getItem('username');
+            let content = localStorage.getItem('content');
+            let obj = localStorage.getItem('obj')
+            obj = JSON.parse(obj)
+
+            if (username) {
+                document.getElementById('welcomeMessage').innerText = username + '님 반갑습니다.';
+            } else {
+                document.getElementById('welcomeMessage').innerText = '반갑습니다.';
+            }
+
+            if (content) {
+                document.querySelector('#simple').innerText = content
+            }
+
+            if (obj) {
+                document.querySelector('#obj').innerText = obj.name ?? "해당 필드 없음"
+            }
+
+            //로컨스토리지 비우기
+            localStorage.clear()
+
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel='stylesheet' href='style.css'>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/csss?family=PT+Sans|PT+Sans+Narrow');
+
+    body {
+        font-family: 'PT Sans Narrow', sans-serif;
+    }
+
+    /* .container {
+        width: 100vw;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-49%, -17%);
+    } */
+
+
+    .container {
+        display: flex;
+    }
+
+    .flip-card {
+        width: 400px;
+        height: 592px;
+        text-align: center;
+        perspective: 1000px;
+        display: inline-block;
+        margin: 10px;
+    }
+
+    .flip-card-inner {
+        position: relative;
+        width: inherit;
+        height: 100%;
+        transition: 0.5s ease-in-out;
+        transform-style: preserve-3d;
+        box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .flip-card:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front {
+        /*border: 10px solid;*/
+        border: 2px solid rgb(225, 224, 224);
+        z-index: 2;
+    }
+
+    .flip-card-back {
+        /*border: 10px solid;*/
+        border: 2px solid rgb(225, 224, 224);
+        z-index: 1;
+        transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+        position: absolute;
+        backface-visibility: hidden;
+        width: 100%;
+        height: 100%;
+    }
+
+    .flip-card-back p {
+        text-align: left;
+        padding: 0 30px;
+        box-sizing: border-box;
+        margin-top: 5px;
+    }
+
+    h4 {
+        margin-top: 0;
+        margin-bottom: 5px;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .flip-card-back p a {
+        display: block;
+        /*좌우 텍스트 공간만 차지*/
+        text-align: center;
+        margin: 10px auto;
+        background-color: #000;
+        color: #fff;
+        border-radius: 5px;
+        padding: 5px;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: 0.3s;
+
+    }
+
+    .flip-card-back p a:hover {
+        background-color: dodgerblue;
+    }
+
+    #img1 {
+        width: 99.8%;
+        height: 99.8%;
+        object-fit: cover;
+    }
+
+    #img2 {
+        width: 99.8%;
+        height: 390px;
+    }
+</style>
+
+<body>
+
+    <div class="container"></div>
+
+    <script>
+        const data = [
+            { img1: "001.png", img2: "002.png", 이름: "이수정", 직업: "피아니스트", p: "자유로운 영혼" },
+            { img1: "003.png", img2: "004.png", 이름: "강나연", 직업: "가수", p: "새침한 여신" }
+        ];
+
+        function sendData(data) {
+            localStorage.setItem('data', JSON.stringify(data));
+            window.location.href = `info2_2.html`;
+        }
+
+        const container = document.querySelector('.container')
+
+        container.innerHTML = ``;
+        const cardHTML = data.map(el => {
+            return `<div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">
+                        <img id='img1' src="${el.img1}" alt="">
+                        <div>앞면</div>
+                    </div>
+                    <div class="flip-card-back">
+                        <img id='img2' src="${el.img2}" alt="">
+                        <h3>이름: ${el.이름}</h3>
+                        <h4>직업: ${el.직업}</h4>
+                        <p>${el.p}<br>
+                            <button class="send">info: 상세내용2</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            `
+        }).join('');
+
+        container.innerHTML = cardHTML;
+
+        // 각 링크에 클릭 이벤트 리스너를 추가합니다.
+        const sends = document.querySelectorAll('.send');
+        sends.forEach((send, index) => {
+            send.addEventListener('click', (event) => {
+                event.preventDefault(); // 기본 동작을 막습니다.
+                sendData(data[index]); // 해당 카드의 정보를 가져와서 처리합니다.
+            });
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>
